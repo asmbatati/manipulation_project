@@ -29,4 +29,89 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+# Generate the executable
+add_executable(joint_space_trajectory
+    src/joint_space_trajectory.cpp)
+add_executable(goal_pose_trajectory
+    src/goal_pose_trajectory.cpp)
+add_executable(gripper_control
+    src/gripper_control.cpp)
+add_executable(cartesian_trajectory
+    src/cartesian_trajectory.cpp)
+add_executable(kinematics_plugin_trajectory
+    src/kinematics_plugin_trajectory.cpp)
+
+target_include_directories(joint_space_trajectory
+    PUBLIC include)
+target_include_directories(goal_pose_trajectory
+    PUBLIC include)
+target_include_directories(gripper_control
+    PUBLIC include)
+target_include_directories(cartesian_trajectory
+    PUBLIC include)
+target_include_directories(kinematics_plugin_trajectory
+    PUBLIC include)
+
+ament_target_dependencies(joint_space_trajectory
+    ament_cmake
+    rclcpp
+    rclcpp_action
+    moveit_core
+    moveit_ros_planning_interface
+    interactive_markers
+    moveit_ros_planning
+    control_msgs)
+ament_target_dependencies(goal_pose_trajectory
+    ament_cmake
+    rclcpp
+    rclcpp_action
+    moveit_core
+    moveit_ros_planning_interface
+    interactive_markers
+    moveit_ros_planning
+    control_msgs)
+ament_target_dependencies(gripper_control
+    ament_cmake
+    rclcpp
+    rclcpp_action
+    moveit_core
+    moveit_ros_planning_interface
+    interactive_markers
+    moveit_ros_planning
+    control_msgs)
+ament_target_dependencies(cartesian_trajectory
+    ament_cmake
+    rclcpp
+    rclcpp_action
+    moveit_core
+    moveit_ros_planning_interface
+    interactive_markers
+    moveit_ros_planning
+    control_msgs)
+ament_target_dependencies(kinematics_plugin_trajectory
+    ament_cmake
+    rclcpp
+    rclcpp_action
+    moveit_core
+    moveit_ros_planning_interface
+    interactive_markers
+    moveit_ros_planning
+    control_msgs)
+
+# Install the executable
+install(TARGETS 
+    joint_space_trajectory
+	goal_pose_trajectory
+	gripper_control
+	cartesian_trajectory
+	kinematics_plugin_trajectory
+    DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install the launch file
+install(DIRECTORY 
+    launch
+    DESTINATION share/${PROJECT_NAME}
+)
+
 ament_package()
