@@ -40,6 +40,8 @@ add_executable(cartesian_trajectory
     src/cartesian_trajectory.cpp)
 add_executable(kinematics_plugin_trajectory
     src/kinematics_plugin_trajectory.cpp)
+add_executable(pick_and_place
+    src/pick_and_place.cpp)
 
 target_include_directories(joint_space_trajectory
     PUBLIC include)
@@ -50,6 +52,8 @@ target_include_directories(gripper_control
 target_include_directories(cartesian_trajectory
     PUBLIC include)
 target_include_directories(kinematics_plugin_trajectory
+    PUBLIC include)
+target_include_directories(pick_and_place
     PUBLIC include)
 
 ament_target_dependencies(joint_space_trajectory
@@ -97,14 +101,24 @@ ament_target_dependencies(kinematics_plugin_trajectory
     interactive_markers
     moveit_ros_planning
     control_msgs)
+ament_target_dependencies(pick_and_place
+    ament_cmake
+    rclcpp
+    rclcpp_action
+    moveit_core
+    moveit_ros_planning_interface
+    interactive_markers
+    moveit_ros_planning
+    control_msgs)
 
 # Install the executable
 install(TARGETS 
     joint_space_trajectory
-	goal_pose_trajectory
-	gripper_control
-	cartesian_trajectory
-	kinematics_plugin_trajectory
+    goal_pose_trajectory
+    gripper_control
+    cartesian_trajectory
+    kinematics_plugin_trajectory
+    pick_and_place
     DESTINATION lib/${PROJECT_NAME}
 )
 
